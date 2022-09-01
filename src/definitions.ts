@@ -4,9 +4,10 @@ import path from 'path';
 import {Field} from 'ringcentral-open-api-parser/lib/types';
 
 const outputDir = path.join(process.env.CODE_OUTPUT_FOLDER!, 'Definitions');
-if (!fs.existsSync(outputDir)) {
-  fs.mkdirSync(outputDir);
+if (fs.existsSync(outputDir)) {
+  fs.rmSync(outputDir, {recursive: true, force: true});
 }
+fs.mkdirSync(outputDir);
 
 const normalizeField = (f: Field): Field => {
   if (

@@ -8,9 +8,10 @@ import {Operation} from 'ringcentral-open-api-parser/lib/types';
 import {capitalizeFirstLetter} from './utils';
 
 const outputDir = path.join(process.env.CODE_OUTPUT_FOLDER!, 'Paths');
-if (!fs.existsSync(outputDir)) {
-  fs.mkdirSync(outputDir);
+if (fs.existsSync(outputDir)) {
+  fs.rmSync(outputDir, {recursive: true, force: true});
 }
+fs.mkdirSync(outputDir);
 
 const generatePathMethod = (
   parameter: string | undefined,

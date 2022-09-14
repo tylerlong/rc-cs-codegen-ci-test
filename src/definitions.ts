@@ -1,13 +1,6 @@
-import {parsed} from './utils';
 import fs from 'fs';
 import path from 'path';
-import {Field} from 'ringcentral-open-api-parser/lib/types';
-
-const outputDir = path.join(process.env.CODE_OUTPUT_FOLDER!, 'Definitions');
-if (fs.existsSync(outputDir)) {
-  fs.rmSync(outputDir, {recursive: true, force: true});
-}
-fs.mkdirSync(outputDir);
+import {Field, ParseResult} from 'ringcentral-open-api-parser/lib/types';
 
 const normalizeField = (f: Field): Field => {
   if (
@@ -96,9 +89,17 @@ const generateField = (f: Field) => {
   return p;
 };
 
-parsed.models.forEach(model => {
-  let code = `namespace RingCentral
-{${
+export const generateDefinitions = (parsed: ParseResult, outputDir: string) => {
+  if (outputDir !== '') {
+    outputDir = path.join(outputDir, 'Definitions');
+    if (fs.existsSync(outputDir)) {
+      fs.rmSync(outputDir, {recursive: true, force: true});
+    }
+    fs.mkdirSync(outputDir);
+  }
+  parsed.models.forEach(model => {
+    let code = `namespace RingCentral
+  {${
     model.description
       ? '\n    /// <summary>\n' +
         model.description
@@ -108,13 +109,16 @@ parsed.models.forEach(model => {
         '\n/// </summary>'
       : ''
   }
-    public class ${model.name}
-    {
-        ${model.fields.map(f => generateField(f)).join('\n\n        ')}
+      public class ${model.name}
+      {
+          ${model.fields.map(f => generateField(f)).join('\n\n        ')}
+      }
+  }`;
+    if (code.includes('[JsonProperty(')) {
+      code = 'using Newtonsoft.Json;\n\n' + code;
     }
-}`;
-  if (code.includes('[JsonProperty(')) {
-    code = 'using Newtonsoft.Json;\n\n' + code;
-  }
-  fs.writeFileSync(path.join(outputDir, `${model.name}.cs`), code);
-});
+    if (outputDir !== '') {
+      fs.writeFileSync(path.join(outputDir, `${model.name}.cs`), code);
+    }
+  });
+};

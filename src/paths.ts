@@ -1,17 +1,10 @@
-import {parsed} from './utils';
 import fs from 'fs';
 import path from 'path';
 import {pascalCase, capitalCase} from 'change-case';
 import R from 'ramda';
-import {Operation} from 'ringcentral-open-api-parser/lib/types';
+import {Operation, ParseResult} from 'ringcentral-open-api-parser/lib/types';
 
 import {capitalizeFirstLetter} from './utils';
-
-const outputDir = path.join(process.env.CODE_OUTPUT_FOLDER!, 'Paths');
-if (fs.existsSync(outputDir)) {
-  fs.rmSync(outputDir, {recursive: true, force: true});
-}
-fs.mkdirSync(outputDir);
 
 const generatePathMethod = (
   parameter: string | undefined,
@@ -213,9 +206,18 @@ const generateOperationMethod = (
   return result;
 };
 
-for (const item of parsed.paths) {
-  const itemPaths = item.paths.map(p => pascalCase(p));
-  const code = `
+export const generatePaths = (parsed: ParseResult, outputDir: string) => {
+  if (outputDir !== '') {
+    outputDir = path.join(outputDir, 'Paths');
+    if (fs.existsSync(outputDir)) {
+      fs.rmSync(outputDir, {recursive: true, force: true});
+    }
+    fs.mkdirSync(outputDir);
+  }
+
+  for (const item of parsed.paths) {
+    const itemPaths = item.paths.map(p => pascalCase(p));
+    const code = `
 using System.Threading.Tasks;
 using System.Linq;
 using System.Net.Http;
@@ -242,7 +244,10 @@ ${item.operations
 
 ${generateBridgeMethod(item.parameter, item.defaultParameter, itemPaths)}
 `;
-  const folder = path.join(outputDir, ...itemPaths);
-  fs.mkdirSync(folder, {recursive: true});
-  fs.writeFileSync(path.join(folder, 'Index.cs'), code.trim());
-}
+    if (outputDir !== '') {
+      const folder = path.join(outputDir, ...itemPaths);
+      fs.mkdirSync(folder, {recursive: true});
+      fs.writeFileSync(path.join(folder, 'Index.cs'), code.trim());
+    }
+  }
+};

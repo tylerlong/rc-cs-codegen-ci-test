@@ -7,7 +7,9 @@ export const capitalizeFirstLetter = (s: string): string => {
   return s.charAt(0).toUpperCase() + s.slice(1);
 };
 
-const doc = yaml.load(
-  fs.readFileSync(process.env.PATH_TO_SPEC_FILE!, 'utf8')
-) as OpenAPIV3.Document;
-export const parsed = parse(doc);
+export const parseSpec = (inputFile: string) => {
+  const doc = yaml.load(
+    fs.readFileSync(inputFile, 'utf8')
+  ) as OpenAPIV3.Document;
+  return parse(doc);
+};

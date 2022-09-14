@@ -1,9 +1,14 @@
 {
   "license": "MIT",
+  "bin": {
+    "generate-rc-cs-code": "./build/index.js"
+  },
   "scripts": {
     "definitions": "ts-node -r dotenv-override-true/config src/definitions.ts",
     "paths": "ts-node -r dotenv-override-true/config src/paths.ts",
-    "generate": "yarn definitions && yarn paths"
+    "generate": "yarn definitions && yarn paths",
+    "prepublishOnly": "tsc",
+    "test": "ts-node ./src/index.ts"
   },
   "dependencies": {
     "change-case": "^4.1.2",

@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import {generateDefinitions} from './definitions';
 import {generatePaths} from './paths';
 import {parseSpec} from './utils';

@@ -34,5 +34,5 @@ yarn install
 ### Test
 
 ```
-yarn test -i /Users/tyler.liu/src/ts/rc-cs-codegen-ci-test/rc-platform.yml -o /Users/tyler.liu/src/ts/rc-cs-codegen-ci-test/temp
+yarn test -i /Users/tyler.liu/src/ts/rc-cs-codegen-ci-test/rc-platform-internal.yml -o /Users/tyler.liu/src/ts/rc-cs-codegen-ci-test/temp
 ```

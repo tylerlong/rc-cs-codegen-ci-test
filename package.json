@@ -1,6 +1,6 @@
 {
   "name": "generate-rc-cs-code",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "license": "MIT",
   "bin": {
     "generate-rc-cs-code": "./build/index.js"
@@ -16,7 +16,7 @@
     "change-case": "^4.1.2",
     "js-yaml": "^4.1.0",
     "ramda": "^0.28.0",
-    "ringcentral-open-api-parser": "^0.6.4"
+    "ringcentral-open-api-parser": "^0.6.5"
   },
   "devDependencies": {
     "@types/js-yaml": "^4.0.5",

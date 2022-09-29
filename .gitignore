@@ -2,3 +2,5 @@ build/
 node_modules/
 temp/
 *-internal.yml
+rc-platform.yml
+dev-notes.md

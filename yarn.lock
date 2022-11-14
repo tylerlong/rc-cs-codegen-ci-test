@@ -150,10 +150,10 @@
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.1.tgz#d3357479a0fdfdd5907fe67e17e0a85c906e1301"
   integrity sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==
 
-"@types/ramda@^0.28.19":
-  version "0.28.19"
-  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.28.19.tgz#255921a62ab137d4e5d78652fea505da5a0d21bb"
-  integrity sha512-RCrYC/dg8K67QtIOACIpSriN1BdcC8a3mV4wLTUVafaY00MKBjuOSI+8fHRV92embUsZ67bZlzmgtO5wBsxcmg==
+"@types/ramda@^0.28.20":
+  version "0.28.20"
+  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.28.20.tgz#df93bb5674f0051464c075480ca3075d1c1361ba"
+  integrity sha512-MeUhzGSXQTRsY19JGn5LIBTLxVEnyF6HDNr08KSJqybsm4DlfLIgK1jBHjhpiSyk252tXYmp+UOe0UFg0UiFsA==
   dependencies:
     ts-toolbelt "^6.15.1"
 
@@ -848,15 +848,15 @@ functional-red-black-tree@^1.0.1:
   resolved "https://registry.yarnpkg.com/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
   integrity sha512-dsKNQNdj6xA3T+QlADDA7mOSlX0qiMINjn0cgr+eGHGsbSHzTabcIogz2+p/iqP1Xs6EP/sS2SbqH+brGTbq0g==
 
-generate-rc-cs-code@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/generate-rc-cs-code/-/generate-rc-cs-code-0.3.0.tgz#7076758c9d0dc82b5c80dd6ccae663ce1adcdd3d"
-  integrity sha512-JLYdeo9jW5oFH+NeofoUlbdqW3GYCtZpo8Xgh3QE4azNclFiHdtb0MK1RXvGrZ+v0Y7caXN9lR3G8idgdmSjfA==
+generate-rc-cs-code@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/generate-rc-cs-code/-/generate-rc-cs-code-0.3.1.tgz#fc08a180c0d2d897aeffa9ca59778ed16c8b804a"
+  integrity sha512-V5eYJ0mccpxhUhplyW12pMfkoekqi2rK5Fmt9da+Bunt4kPrslHUimadCHDEGa60N4UsvB0UnpQVSmvHKNXviQ==
   dependencies:
     change-case "^4.1.2"
     js-yaml "^4.1.0"
     ramda "^0.28.0"
-    ringcentral-open-api-parser "^0.8.1"
+    ringcentral-open-api-parser "^0.8.3"
 
 get-stream@^6.0.0:
   version "6.0.1"
@@ -1560,10 +1560,10 @@ rimraf@^3.0.2:
   dependencies:
     glob "^7.1.3"
 
-ringcentral-open-api-parser@^0.8.1, ringcentral-open-api-parser@^0.8.3:
-  version "0.8.3"
-  resolved "https://registry.yarnpkg.com/ringcentral-open-api-parser/-/ringcentral-open-api-parser-0.8.3.tgz#10f57172b12386dba0d6b016a484eed8ced5a2f3"
-  integrity sha512-T7L4vvLbx6schzCuUxIJx8vWOQxj/11UaJiPVxzXGjIPIy1aEY6CpXzdauM5Q8OWuf21hNBao1SaxU4Hg9mAzQ==
+ringcentral-open-api-parser@^0.8.3, ringcentral-open-api-parser@^0.8.4:
+  version "0.8.4"
+  resolved "https://registry.yarnpkg.com/ringcentral-open-api-parser/-/ringcentral-open-api-parser-0.8.4.tgz#66cb302fafca32472c92a3137a1665792b2d4a8a"
+  integrity sha512-0m4Wsu7XdG4k3umxfnIfEnKFlJRWIzArQrYt3/DETeRTkQ7kiXTwyLAy3f67nTldNVRVMTWKPQBeIhJ7F/nOXg==
   dependencies:
     openapi-types "^12.0.2"
     ramda "^0.28.0"

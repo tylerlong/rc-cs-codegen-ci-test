@@ -140,10 +140,10 @@
   resolved "https://registry.yarnpkg.com/@types/minimist/-/minimist-1.2.2.tgz#ee771e2ba4b3dc5b372935d549fd9617bf345b8c"
   integrity sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==
 
-"@types/node@^18.11.9":
-  version "18.11.9"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.9.tgz#02d013de7058cea16d36168ef2fc653464cfbad4"
-  integrity sha512-CRpX21/kGdzjOpFsZSkcrXMGIBWMGNIHXXBVFSH+ggkftxg+XYP20TESbh+zFvFj3EQOl5byk0HTRn1IL6hbqg==
+"@types/node@^18.11.18":
+  version "18.11.18"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.18.tgz#8dfb97f0da23c2293e554c5a50d61ef134d7697f"
+  integrity sha512-DHQpWGjyQKSHj3ebjFI/wRKcqQcdR+MoFBygntYOZytCqNfkd2ZC4ARDJ2DQqhjH5p85Nnd3jhUJIXrszFX/JA==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
@@ -848,15 +848,15 @@ functional-red-black-tree@^1.0.1:
   resolved "https://registry.yarnpkg.com/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
   integrity sha512-dsKNQNdj6xA3T+QlADDA7mOSlX0qiMINjn0cgr+eGHGsbSHzTabcIogz2+p/iqP1Xs6EP/sS2SbqH+brGTbq0g==
 
-generate-rc-cs-code@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/generate-rc-cs-code/-/generate-rc-cs-code-0.3.1.tgz#fc08a180c0d2d897aeffa9ca59778ed16c8b804a"
-  integrity sha512-V5eYJ0mccpxhUhplyW12pMfkoekqi2rK5Fmt9da+Bunt4kPrslHUimadCHDEGa60N4UsvB0UnpQVSmvHKNXviQ==
+generate-rc-cs-code@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/generate-rc-cs-code/-/generate-rc-cs-code-0.3.2.tgz#e6c1bdfabba9b0a2febd284b0c0d4dfd2527a674"
+  integrity sha512-jCg6BSOJ+7CCATIJ0ci8rMlvdDVWuiO17FEwe/ymdC9K+S4HCSP9/my/K94Fa2+iN0Z70/Ux2FnVAMI0YdpVAw==
   dependencies:
     change-case "^4.1.2"
     js-yaml "^4.1.0"
     ramda "^0.28.0"
-    ringcentral-open-api-parser "^0.8.3"
+    ringcentral-open-api-parser "^0.8.4"
 
 get-stream@^6.0.0:
   version "6.0.1"
@@ -1560,10 +1560,10 @@ rimraf@^3.0.2:
   dependencies:
     glob "^7.1.3"
 
-ringcentral-open-api-parser@^0.8.3, ringcentral-open-api-parser@^0.8.4:
-  version "0.8.4"
-  resolved "https://registry.yarnpkg.com/ringcentral-open-api-parser/-/ringcentral-open-api-parser-0.8.4.tgz#66cb302fafca32472c92a3137a1665792b2d4a8a"
-  integrity sha512-0m4Wsu7XdG4k3umxfnIfEnKFlJRWIzArQrYt3/DETeRTkQ7kiXTwyLAy3f67nTldNVRVMTWKPQBeIhJ7F/nOXg==
+ringcentral-open-api-parser@^0.8.4, ringcentral-open-api-parser@^0.8.5:
+  version "0.8.5"
+  resolved "https://registry.yarnpkg.com/ringcentral-open-api-parser/-/ringcentral-open-api-parser-0.8.5.tgz#e33bec5473945c5e7ff292d3732d63644f96445f"
+  integrity sha512-oLywzGQxIFiDobWZnFVCJZt/LNEc2VflsA6aiNbkC/EUTBi5V5ysBIvdqcHnNCWDD5QChmmpuC/t8BM+w07YnA==
   dependencies:
     openapi-types "^12.0.2"
     ramda "^0.28.0"
@@ -1860,10 +1860,10 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typescript@^4.8.4:
-  version "4.8.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.8.4.tgz#c464abca159669597be5f96b8943500b238e60e6"
-  integrity sha512-QCh+85mCy+h0IGff8r5XWzOVSbBO+KfeYrMQh7NJ58QujwcE22u+NUSmUxqF+un70P9GXKxa2HCNiTTMJknyjQ==
+typescript@^4.9.4:
+  version "4.9.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.9.4.tgz#a2a3d2756c079abda241d75f149df9d561091e78"
+  integrity sha512-Uz+dTXYzxXXbsFpM86Wh3dKCxrQqUcVMxwU54orwlJjOpO3ao8L7j5lH+dWfTwgCwIuM9GQ2kvVotzYJMXTBZg==
 
 upper-case-first@^2.0.2:
   version "2.0.2"

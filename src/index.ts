@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import {generateDefinitions} from './definitions';
 import {generatePaths} from './paths';
+import {generateSamples} from './samples';
 import {parseSpec} from './utils';
 
 let index = process.argv.indexOf('-i');
@@ -19,3 +20,4 @@ if (index !== -1) {
 const parsed = parseSpec(inputFile);
 generateDefinitions(parsed, outputDir);
 generatePaths(parsed, outputDir);
+generateSamples(parsed, outputDir);

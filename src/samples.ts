@@ -90,15 +90,13 @@ export const generateSamples = (parsed: ParseResult, outputDir: string) => {
         markdown.push(
           `- \`${parameter}\` is of type [${capitalizeFirstLetter(
             parameter
-          )}](./RingCentral.Net/Definitions/${capitalizeFirstLetter(
-            parameter
-          )}.cs)`
+          )}](./Definitions/${capitalizeFirstLetter(parameter)}.cs)`
         );
       }
 
       if (operation.responseSchema?.$ref) {
         markdown.push(
-          `- \`result\` is of type [${operation.responseSchema.$ref}](./RingCentral.Net/Definitions/${operation.responseSchema.$ref}.cs)`
+          `- \`result\` is of type [${operation.responseSchema.$ref}](./Definitions/${operation.responseSchema.$ref}.cs)`
         );
       } else if (!operation.responseSchema) {
         markdown.push('- `result` is an empty string');

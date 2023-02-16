@@ -1568,10 +1568,10 @@ ringcentral-open-api-parser@^0.8.13:
     openapi-types "^12.1.0"
     ramda "^0.28.0"
 
-ringcentral-open-api-parser@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/ringcentral-open-api-parser/-/ringcentral-open-api-parser-0.9.0.tgz#9daf7b551b551d69637d6ea74216d45ac1ba5a05"
-  integrity sha512-tqo4psITlSvyhuvi2EBKx+ABNErIi4Rh1yJVIe2m6JeFmq9ZtjgfBC9w5JiPaJuione6gskCiK3X0wN9N4nZPQ==
+ringcentral-open-api-parser@^0.9.2:
+  version "0.9.2"
+  resolved "https://registry.yarnpkg.com/ringcentral-open-api-parser/-/ringcentral-open-api-parser-0.9.2.tgz#413250b4dfde4b369c472da79712b388759f2c41"
+  integrity sha512-lfAlZNFpDCZax/NnjfHMRXcnTvEfk7e1OpA2Y2ljUnsuO0ct7Z5FemDCC3cY0yixLE6rbx6jxFQ+WOZBNOWjzw==
   dependencies:
     openapi-types "^12.1.0"
     ramda "^0.28.0"

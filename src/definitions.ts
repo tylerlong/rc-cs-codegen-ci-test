@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import * as fs from 'fs';
+import * as path from 'path';
 import { Field, ParseResult } from 'ringcentral-open-api-parser/lib/types';
 
 const normalizeField = (f: Field): Field => {

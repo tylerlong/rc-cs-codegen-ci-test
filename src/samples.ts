@@ -1,6 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-import R from 'ramda';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as R from 'ramda';
 import { pascalCase } from 'change-case';
 import { capitalizeFirstLetter } from './utils';
 import { ParseResult } from 'ringcentral-open-api-parser/lib/types';

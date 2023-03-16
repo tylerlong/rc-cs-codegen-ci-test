@@ -1,6 +1,6 @@
 import { parse } from 'ringcentral-open-api-parser';
-import yaml from 'js-yaml';
-import fs from 'fs';
+import * as yaml from 'js-yaml';
+import * as fs from 'fs';
 import { OpenAPIV3 } from 'openapi-types';
 
 export const capitalizeFirstLetter = (s: string): string => {

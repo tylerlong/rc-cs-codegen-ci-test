@@ -1,31 +1,39 @@
 {
-  "name": "generate-rc-cs-code",
-  "version": "0.4.7",
   "license": "MIT",
-  "bin": {
-    "generate-rc-cs-code": "./build/index.js"
-  },
+  "version": "0.4.7",
   "scripts": {
+    "lint": "eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write .",
+    "test": "ts-node ./src/index.ts",
     "definitions": "ts-node -r dotenv-override-true/config src/definitions.ts",
     "paths": "ts-node -r dotenv-override-true/config src/paths.ts",
     "generate": "yarn definitions && yarn paths",
-    "prepublishOnly": "tsc",
-    "test": "ts-node ./src/index.ts"
+    "prepublishOnly": "tsc src/index.ts --declaration --outDir build"
+  },
+  "name": "generate-rc-cs-code",
+  "bin": {
+    "generate-rc-cs-code": "./build/index.js"
   },
   "dependencies": {
     "change-case": "^4.1.2",
     "js-yaml": "^4.1.0",
     "ramda": "^0.28.0",
-    "ringcentral-open-api-parser": "^0.9.3"
+    "ringcentral-open-api-parser": "^0.9.4"
   },
   "devDependencies": {
     "@types/js-yaml": "^4.0.5",
     "@types/node": "^18.15.3",
     "@types/ramda": "^0.28.23",
+    "@typescript-eslint/eslint-plugin": "^5.55.0",
+    "@typescript-eslint/parser": "^5.55.0",
     "dotenv-override-true": "^6.2.2",
+    "eslint": "^8.36.0",
+    "eslint-config-alloy": "^4.9.0",
+    "eslint-config-prettier": "^8.7.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "generate-rc-cs-code": "^0.4.7",
-    "gts": "^3.1.1",
+    "prettier": "^2.8.4",
     "ts-node": "^10.9.1",
+    "ttpt": "^0.2.2",
     "typescript": "^5.0.2",
     "yarn-upgrade-all": "^0.7.2"
   }

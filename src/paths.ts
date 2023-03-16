@@ -1,34 +1,25 @@
 import fs from 'fs';
 import path from 'path';
-import {pascalCase, capitalCase} from 'change-case';
+import { pascalCase, capitalCase } from 'change-case';
 import R from 'ramda';
-import {Operation, ParseResult} from 'ringcentral-open-api-parser/lib/types';
+import { Operation, ParseResult } from 'ringcentral-open-api-parser/lib/types';
 
-import {capitalizeFirstLetter} from './utils';
+import { capitalizeFirstLetter } from './utils';
 
-const generatePathMethod = (
-  parameter: string | undefined,
-  token: string,
-  hasParent: boolean
-): string => {
+const generatePathMethod = (parameter: string | undefined, token: string, hasParent: boolean): string => {
   if (parameter) {
     return `public string Path(bool withParameter = true)
         {
             if (withParameter && ${parameter} != null)
             {
-                return $"${
-                  hasParent ? '{parent.Path()}' : ''
-                }/${token}/{${parameter}}";
+                return $"${hasParent ? '{parent.Path()}' : ''}/${token}/{${parameter}}";
             }
             return $"${hasParent ? '{parent.Path()}' : ''}/${token}";
         }`;
   } else {
     return `public string Path()
         {
-            return $"${hasParent ? '{parent.Path()}' : ''}/${token.replace(
-      'dotSearch',
-      '.search'
-    )}";
+            return $"${hasParent ? '{parent.Path()}' : ''}/${token.replace('dotSearch', '.search')}";
         }`;
   }
 };
@@ -36,7 +27,7 @@ const generatePathMethod = (
 const generateBridgeMethod = (
   parameter: string | undefined,
   defaultValue: string | undefined,
-  itemPaths: string[]
+  itemPaths: string[],
 ): string => {
   if (itemPaths.length > 1) {
     return `namespace RingCentral.Paths.${R.init(itemPaths).join('.')}
@@ -44,14 +35,10 @@ const generateBridgeMethod = (
     public partial class Index
     {
         public ${itemPaths.join('.')}.Index ${R.last(itemPaths)}(${
-      parameter
-        ? `string ${parameter} = ${defaultValue ? `"${defaultValue}"` : null}`
-        : ''
+      parameter ? `string ${parameter} = ${defaultValue ? `"${defaultValue}"` : null}` : ''
     })
         {
-            return new ${itemPaths.join('.')}.Index(this${
-      parameter ? `, ${parameter}` : ''
-    });
+            return new ${itemPaths.join('.')}.Index(this${parameter ? `, ${parameter}` : ''});
         }
     }
 }`;
@@ -62,7 +49,7 @@ const generateBridgeMethod = (
 const generateConstructor = (
   parameter: string | undefined,
   defaultValue: string | undefined,
-  parentPaths: string[]
+  parentPaths: string[],
 ): string => {
   const result = ['public RestClient rc;'];
   if (parentPaths.length > 0) {
@@ -74,26 +61,18 @@ const generateConstructor = (
   if (parentPaths.length > 0) {
     result.push(
       `public Index(${parentPaths.join('.')}.Index parent${
-        parameter
-          ? `, string ${parameter} = ${
-              defaultValue ? `"${defaultValue}"` : null
-            }`
-          : ''
+        parameter ? `, string ${parameter} = ${defaultValue ? `"${defaultValue}"` : null}` : ''
       })
-      {`
+      {`,
     );
     result.push('this.parent = parent;');
     result.push('this.rc = parent.rc;');
   } else {
     result.push(
       `public Index(RestClient rc${
-        parameter
-          ? `, string ${parameter} = ${
-              defaultValue ? `"${defaultValue}"` : null
-            }`
-          : ''
+        parameter ? `, string ${parameter} = ${defaultValue ? `"${defaultValue}"` : null}` : ''
       })
-      {`
+      {`,
     );
     result.push('this.rc = rc;');
   }
@@ -105,21 +84,15 @@ const generateConstructor = (
   return result.join('\n');
 };
 
-const generateOperationMethod = (
-  operation: Operation,
-  parameter: string | undefined
-): string => {
+// eslint-disable-next-line complexity
+const generateOperationMethod = (operation: Operation, parameter: string | undefined): string => {
   // comments
   const comments = ['/// <summary>'];
   comments.push(
-    `${(
-      operation.description ||
-      operation.summary ||
-      capitalCase(operation.operationId)
-    )
+    `${(operation.description || operation.summary || capitalCase(operation.operationId))
       .split('\n')
-      .map(l => `/// ${l}`)
-      .join('\n')}`
+      .map((l) => `/// ${l}`)
+      .join('\n')}`,
   );
   comments.push(`/// HTTP Method: ${operation.method}`);
   comments.push(`/// Endpoint: ${operation.endpoint}`);
@@ -133,15 +106,12 @@ const generateOperationMethod = (
     comments.push(`/// User Permission: ${operation.userPermission}`);
   }
   comments.push('/// </summary>');
-  let result = comments.map(l => `        ${l}`).join('\n');
+  let result = comments.map((l) => `        ${l}`).join('\n');
 
   // responseType
   let responseType = 'string';
   if (operation.responseSchema) {
-    if (
-      operation.responseSchema.type === 'string' &&
-      operation.responseSchema.format === 'binary'
-    ) {
+    if (operation.responseSchema.type === 'string' && operation.responseSchema.format === 'binary') {
       responseType = 'byte[]';
     } else if (operation.responseSchema.$ref) {
       responseType = `RingCentral.${operation.responseSchema.$ref}`;
@@ -151,26 +121,16 @@ const generateOperationMethod = (
   // methodParams
   const methodParams: string[] = [];
   if (operation.bodyParameters) {
-    methodParams.push(
-      `RingCentral.${capitalizeFirstLetter(operation.bodyParameters)} ${
-        operation.bodyParameters
-      }`
-    );
+    methodParams.push(`RingCentral.${capitalizeFirstLetter(operation.bodyParameters)} ${operation.bodyParameters}`);
   }
   if (operation.queryParameters) {
-    methodParams.push(
-      `RingCentral.${capitalizeFirstLetter(
-        operation.queryParameters
-      )} queryParams = null`
-    );
+    methodParams.push(`RingCentral.${capitalizeFirstLetter(operation.queryParameters)} queryParams = null`);
   }
   methodParams.push('RestRequestConfig restRequestConfig = null');
 
   // requestParams
   const requestParams: string[] = [];
-  requestParams.push(
-    `this.Path(${!operation.withParameter && parameter ? 'false' : ''})`
-  );
+  requestParams.push(`this.Path(${!operation.withParameter && parameter ? 'false' : ''})`);
   if (operation.formUrlEncoded) {
     requestParams.push('new FormUrlEncodedContent(dict)');
   } else if (operation.multipart) {
@@ -183,9 +143,7 @@ const generateOperationMethod = (
 
   // result
   result += `
-  public async Task<${responseType}> ${pascalCase(
-    operation.method2
-  )}(${methodParams.join(', ')})
+  public async Task<${responseType}> ${pascalCase(operation.method2)}(${methodParams.join(', ')})
   {\n`;
   if (operation.withParameter) {
     result += `if (${parameter} == null)
@@ -199,24 +157,23 @@ const generateOperationMethod = (
   } else if (operation.multipart) {
     result += `var multipartFormDataContent = Utils.GetMultipartFormDataContent(${operation.bodyParameters});\n`;
   }
-  result += `return await rc.${capitalizeFirstLetter(
-    operation.method
-  )}<${responseType}>(${requestParams.join(', ')});
+  result += `return await rc.${capitalizeFirstLetter(operation.method)}<${responseType}>(${requestParams.join(', ')});
   }`;
   return result;
 };
 
-export const generatePaths = (parsed: ParseResult, outputDir: string) => {
+export const generatePaths = (parsed: ParseResult, _outputDir: string) => {
+  let outputDir = _outputDir;
   if (outputDir !== '') {
     outputDir = path.join(outputDir, 'Paths');
     if (fs.existsSync(outputDir)) {
-      fs.rmSync(outputDir, {recursive: true, force: true});
+      fs.rmSync(outputDir, { recursive: true, force: true });
     }
     fs.mkdirSync(outputDir);
   }
 
   for (const item of parsed.paths) {
-    const itemPaths = item.paths.map(p => pascalCase(p));
+    const itemPaths = item.paths.map((p) => pascalCase(p));
     const code = `
 using System.Threading.Tasks;
 using System.Linq;
@@ -226,19 +183,9 @@ namespace RingCentral.Paths.${itemPaths.join('.')}
 {
     public partial class Index
     {
-        ${generateConstructor(
-          item.parameter,
-          item.defaultParameter,
-          R.init(itemPaths)
-        )}
-        ${generatePathMethod(
-          item.parameter,
-          R.last(item.paths)!,
-          itemPaths.length > 1
-        )}
-${item.operations
-  .map(operation => generateOperationMethod(operation, item.parameter))
-  .join('\n\n')}
+        ${generateConstructor(item.parameter, item.defaultParameter, R.init(itemPaths))}
+        ${generatePathMethod(item.parameter, R.last(item.paths)!, itemPaths.length > 1)}
+${item.operations.map((operation) => generateOperationMethod(operation, item.parameter)).join('\n\n')}
     }
 }
 
@@ -246,7 +193,7 @@ ${generateBridgeMethod(item.parameter, item.defaultParameter, itemPaths)}
 `;
     if (outputDir !== '') {
       const folder = path.join(outputDir, ...itemPaths);
-      fs.mkdirSync(folder, {recursive: true});
+      fs.mkdirSync(folder, { recursive: true });
       fs.writeFileSync(path.join(folder, 'Index.cs'), code.trim());
     }
   }

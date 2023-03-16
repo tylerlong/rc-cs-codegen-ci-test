@@ -1,21 +1,9 @@
 import fs from 'fs';
 import path from 'path';
-import {Field, ParseResult} from 'ringcentral-open-api-parser/lib/types';
+import { Field, ParseResult } from 'ringcentral-open-api-parser/lib/types';
 
 const normalizeField = (f: Field): Field => {
-  if (
-    [
-      'event',
-      'delegate',
-      'ref',
-      'default',
-      'operator',
-      'public',
-      'params',
-      'internal',
-      'checked',
-    ].includes(f.name)
-  ) {
+  if (['event', 'delegate', 'ref', 'default', 'operator', 'public', 'params', 'internal', 'checked'].includes(f.name)) {
     f.name = `@${f.name}`;
   }
   if (f.$ref) {
@@ -27,17 +15,15 @@ const normalizeField = (f: Field): Field => {
   } else if (f.type === 'array') {
     f.type = `${normalizeField(f.items!).type}[]`;
   } else if (f.type === 'dict') {
-    f.type = `System.Collections.Generic.Dictionary<string, ${
-      normalizeField(f.items!).type
-    }>`;
+    f.type = `System.Collections.Generic.Dictionary<string, ${normalizeField(f.items!).type}>`;
   } else if (f.type === 'boolean') {
     f.type = 'bool?';
   }
   return f;
 };
 
-const generateField = (f: Field) => {
-  f = normalizeField(f);
+const generateField = (_f: Field) => {
+  const f = normalizeField(_f);
   let p = '';
   if (f.name.startsWith('$')) {
     // $schema
@@ -45,10 +31,7 @@ const generateField = (f: Field) => {
     p += `\n        public ${f.type} ${f.name.substring(1)} { get; set; }`;
   } else if (f.name.includes('-')) {
     p += `[JsonProperty("${f.name}")]`;
-    p += `\n        public ${f.type} ${f.name.replace(
-      /-([a-z])/g,
-      (match, p1: string) => p1.toUpperCase()
-    )};`;
+    p += `\n        public ${f.type} ${f.name.replace(/-([a-z])/g, (match, p1: string) => p1.toUpperCase())};`;
   } else if (f.name.includes(':') || f.name.includes('.')) {
     p += `[JsonProperty("${f.name}")]`;
     p += `\n        public ${f.type} ${f.name.replace(/[:.](\w)/g, '_$1')};`;
@@ -57,10 +40,8 @@ const generateField = (f: Field) => {
   }
 
   p = `/// </summary>\n        ${p}`;
-  if (f.enum || (f.items || {}).enum) {
-    p = `///     Enum: ${(f.enum || (f.items || {}).enum)!.join(
-      ', '
-    )}\n        ${p}`;
+  if (f.enum || f.items?.enum) {
+    p = `///     Enum: ${(f.enum || f.items?.enum)!.join(', ')}\n        ${p}`;
   }
   if (f.default) {
     p = `///     Default: ${f.default}\n        ${p}`;
@@ -81,38 +62,36 @@ const generateField = (f: Field) => {
     p = `///     Required\n        ${p}`;
   }
   if (f.description) {
-    p = `///     ${f.description
-      .trim()
-      .split('\n')
-      .join('\n            ///     ')}\n        ${p}`;
+    p = `///     ${f.description.trim().split('\n').join('\n            ///     ')}\n        ${p}`;
   }
   p = `/// <summary>\n        ${p}`;
   return p;
 };
 
-export const generateDefinitions = (parsed: ParseResult, outputDir: string) => {
+export const generateDefinitions = (parsed: ParseResult, _outputDir: string) => {
+  let outputDir = _outputDir;
   if (outputDir !== '') {
     outputDir = path.join(outputDir, 'Definitions');
     if (fs.existsSync(outputDir)) {
-      fs.rmSync(outputDir, {recursive: true, force: true});
+      fs.rmSync(outputDir, { recursive: true, force: true });
     }
     fs.mkdirSync(outputDir);
   }
-  parsed.models.forEach(model => {
+  parsed.models.forEach((model) => {
     let code = `namespace RingCentral
   {${
     model.description
       ? '\n    /// <summary>\n' +
         model.description
           .split('\n')
-          .map(line => '/// ' + line)
+          .map((line) => '/// ' + line)
           .join('\n') +
         '\n/// </summary>'
       : ''
   }
       public class ${model.name}
       {
-          ${model.fields.map(f => generateField(f)).join('\n\n        ')}
+          ${model.fields.map((f) => generateField(f)).join('\n\n        ')}
       }
   }`;
     if (code.includes('[JsonProperty(')) {

@@ -140,10 +140,10 @@
   resolved "https://registry.yarnpkg.com/@types/minimist/-/minimist-1.2.2.tgz#ee771e2ba4b3dc5b372935d549fd9617bf345b8c"
   integrity sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==
 
-"@types/node@^18.13.0":
-  version "18.13.0"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.13.0.tgz#0400d1e6ce87e9d3032c19eb6c58205b0d3f7850"
-  integrity sha512-gC3TazRzGoOnoKAhUx+Q0t8S9Tzs74z7m0ipwGpSqQrleP14hKxP4/JUeEQcD3W1/aIpnWl8pHowI7WokuZpXg==
+"@types/node@^18.15.3":
+  version "18.15.3"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.15.3.tgz#f0b991c32cfc6a4e7f3399d6cb4b8cf9a0315014"
+  integrity sha512-p6ua9zBxz5otCmbpb5D3U4B5Nanw6Pk3PPyX05xnxbB/fRv71N7CPmORg7uAD5P70T0xmx1pzAx/FUfa5X+3cw==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
@@ -451,6 +451,11 @@ color-convert@^2.0.1:
   integrity sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==
   dependencies:
     color-name "~1.1.4"
+
+color-loggers@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/color-loggers/-/color-loggers-0.1.3.tgz#222b5cb8f980ad73e040d3c6f690d7fc77d242f5"
+  integrity sha512-drMxHb4fF/z4xkPC+pczqyqBcZCivyO9w0STGnDLwHiHOLeMANw0KKKl7Kq26jkMIzkTQJKKdPdqTGihNnFN3A==
 
 color-name@1.1.3:
   version "1.1.3"
@@ -848,15 +853,15 @@ functional-red-black-tree@^1.0.1:
   resolved "https://registry.yarnpkg.com/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
   integrity sha512-dsKNQNdj6xA3T+QlADDA7mOSlX0qiMINjn0cgr+eGHGsbSHzTabcIogz2+p/iqP1Xs6EP/sS2SbqH+brGTbq0g==
 
-generate-rc-cs-code@^0.4.5:
-  version "0.4.5"
-  resolved "https://registry.yarnpkg.com/generate-rc-cs-code/-/generate-rc-cs-code-0.4.5.tgz#0e28b80abcf1dffb1e384f97aca9a76ed7360ba0"
-  integrity sha512-CUPKjB7z8PXcyEC7H15m3FFiQaIShyiCmazBQws3FbgTTJDHGee8TwkPdLCl/q/boyDDSQ1B/b3oU92LfS9HHw==
+generate-rc-cs-code@^0.4.7:
+  version "0.4.7"
+  resolved "https://registry.yarnpkg.com/generate-rc-cs-code/-/generate-rc-cs-code-0.4.7.tgz#efb688fcef0f1ea485d03141189b27f08be3c9d9"
+  integrity sha512-NWyQHlknl7s38U8CF0rGRMe7ntTLUDOGkK4jXPR+fbcQ0waznK+QQFbOG04y0PoZAen+LVfrm/J3BZwDgobqFA==
   dependencies:
     change-case "^4.1.2"
     js-yaml "^4.1.0"
     ramda "^0.28.0"
-    ringcentral-open-api-parser "^0.8.13"
+    ringcentral-open-api-parser "^0.9.2"
 
 get-stream@^6.0.0:
   version "6.0.1"
@@ -1170,7 +1175,7 @@ lodash.truncate@^4.4.2:
   resolved "https://registry.yarnpkg.com/lodash.truncate/-/lodash.truncate-4.4.2.tgz#5a350da0b1113b837ecfffd5812cbe58d6eae193"
   integrity sha512-jttmRe7bRse52OsWIMDLaXxWqRAmtIUccAQ3garviCqJjafXOfNMO0yMfNpdD6zbGaTU0P5Nz7e7gAT6cKmJRw==
 
-lodash@^4.17.19:
+lodash@^4.17.19, lodash@^4.17.21:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -1560,14 +1565,6 @@ rimraf@^3.0.2:
   dependencies:
     glob "^7.1.3"
 
-ringcentral-open-api-parser@^0.8.13:
-  version "0.8.13"
-  resolved "https://registry.yarnpkg.com/ringcentral-open-api-parser/-/ringcentral-open-api-parser-0.8.13.tgz#0adc2aac5fb6bd82bff4bcf91e74b4e1c4c5d750"
-  integrity sha512-18cOZeuddz601r6VGP9/3tA/nBN8SjWwctWF9K0acHo9l1WmqwZ98etkO+xmEISnEDpEtOAS4jpqyK89btIFHg==
-  dependencies:
-    openapi-types "^12.1.0"
-    ramda "^0.28.0"
-
 ringcentral-open-api-parser@^0.9.2:
   version "0.9.2"
   resolved "https://registry.yarnpkg.com/ringcentral-open-api-parser/-/ringcentral-open-api-parser-0.9.2.tgz#413250b4dfde4b369c472da79712b388759f2c41"
@@ -1575,6 +1572,15 @@ ringcentral-open-api-parser@^0.9.2:
   dependencies:
     openapi-types "^12.1.0"
     ramda "^0.28.0"
+
+ringcentral-open-api-parser@^0.9.3:
+  version "0.9.3"
+  resolved "https://registry.yarnpkg.com/ringcentral-open-api-parser/-/ringcentral-open-api-parser-0.9.3.tgz#81f01d4c86294b41c84e06018386328a207c3b90"
+  integrity sha512-bAH69tImgK9vMoul4yz8ox2J36CHQFdLeQyFPY9/U4iS8cEr/gX+/o72FMZ/6JxiVegJHLmGyOj5fzG5LwNtQw==
+  dependencies:
+    openapi-types "^12.1.0"
+    ramda "^0.28.0"
+    ttpt "^0.2.2"
 
 run-async@^2.4.0:
   version "2.4.1"
@@ -1637,6 +1643,13 @@ shebang-regex@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-3.0.0.tgz#ae16f1644d873ecad843b0307b143362d4c42172"
   integrity sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==
+
+shell-commands@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/shell-commands/-/shell-commands-0.1.2.tgz#268b1dd90ea1d76ca3d30113960604a97810729b"
+  integrity sha512-uWKqWr1K6MJXNXyYFsH6XUe41kMIF6gNTapUNnwbTGQ6f1FyFFbfIHrni1VJHx5PZkRcIbHWjNYFLsUIvSm0qA==
+  dependencies:
+    color-loggers "^0.1.3"
 
 signal-exit@^3.0.2, signal-exit@^3.0.3:
   version "3.0.7"
@@ -1829,6 +1842,14 @@ tsutils@^3.21.0:
   dependencies:
     tslib "^1.8.1"
 
+ttpt@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/ttpt/-/ttpt-0.2.2.tgz#fffbb57f3a2e610134c15e5084bc25fb54d72af5"
+  integrity sha512-OTQ7xAd96mtgpqlbZXJJXit/JtIIWMRmx6yoQ9i5Jd/V2/7YVANpBF/rHDHvRmEjM+MSYtFq9X8V5aCCW0CQqw==
+  dependencies:
+    lodash "^4.17.21"
+    shell-commands "^0.1.2"
+
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/type-check/-/type-check-0.4.0.tgz#07b8203bfa7056c0657050e3ccd2c37730bab8f1"
@@ -1868,10 +1889,10 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typescript@^4.9.5:
-  version "4.9.5"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.9.5.tgz#095979f9bcc0d09da324d58d03ce8f8374cbe65a"
-  integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
+typescript@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.0.2.tgz#891e1a90c5189d8506af64b9ef929fca99ba1ee5"
+  integrity sha512-wVORMBGO/FAs/++blGNeAVdbNKtIh1rbBL2EyQ1+J9lClJ93KiiKe8PmFIVdXhHcyv44SL9oglmfeSsndo0jRw==
 
 upper-case-first@^2.0.2:
   version "2.0.2"

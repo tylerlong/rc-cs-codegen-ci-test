@@ -121,7 +121,11 @@ const generateOperationMethod = (operation: Operation, parameter: string | undef
   // methodParams
   const methodParams: string[] = [];
   if (operation.bodyParameters) {
-    methodParams.push(`RingCentral.${capitalizeFirstLetter(operation.bodyParameters)} ${operation.bodyParameters}`);
+    if (operation.bodyType) {
+      methodParams.push(`${operation.bodyType} ${operation.bodyParameters}`);
+    } else {
+      methodParams.push(`RingCentral.${capitalizeFirstLetter(operation.bodyParameters)} ${operation.bodyParameters}`);
+    }
   }
   if (operation.queryParameters) {
     methodParams.push(`RingCentral.${capitalizeFirstLetter(operation.queryParameters)} queryParams = null`);

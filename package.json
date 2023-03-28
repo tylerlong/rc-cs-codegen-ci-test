@@ -1,6 +1,6 @@
 {
   "license": "MIT",
-  "version": "0.4.9",
+  "version": "0.4.10",
   "scripts": {
     "lint": "eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write . && sort-package-json",
     "test": "ts-node ./src/index.ts",
@@ -17,7 +17,7 @@
     "change-case": "^4.1.2",
     "js-yaml": "^4.1.0",
     "ramda": "^0.28.0",
-    "ringcentral-open-api-parser": "^0.9.12"
+    "ringcentral-open-api-parser": "^0.9.13"
   },
   "devDependencies": {
     "@types/js-yaml": "^4.0.5",
@@ -30,11 +30,11 @@
     "eslint-config-alloy": "^4.9.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "generate-rc-cs-code": "^0.4.8",
+    "generate-rc-cs-code": "^0.4.9",
     "prettier": "^2.8.7",
     "sort-package-json": "^2.4.1",
     "ts-node": "^10.9.1",
-    "ttpt": "^0.5.1",
+    "ttpt": "^0.5.2",
     "typescript": "^5.0.2",
     "yarn-upgrade-all": "^0.7.2"
   }

@@ -664,15 +664,15 @@ fs.realpath@^1.0.0:
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
   integrity sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==
 
-generate-rc-cs-code@^0.4.10:
-  version "0.4.10"
-  resolved "https://registry.npmjs.org/generate-rc-cs-code/-/generate-rc-cs-code-0.4.10.tgz#de3de39eaf2f471c50a1824a4fa60eabae5c2b95"
-  integrity sha512-hZil8n4NrUhlxFmRgBttOkVaDDgRYv1pS6XUMbOr62hkClD92OQ7BztNyVGBl93BzW4li/xwnj+mTWYT8PcJ3A==
+generate-rc-cs-code@^0.4.11:
+  version "0.4.11"
+  resolved "https://registry.npmjs.org/generate-rc-cs-code/-/generate-rc-cs-code-0.4.11.tgz#18998cb18779cbf225e012225d919089d95f881f"
+  integrity sha512-7lCN9RZFG90ij9DTfGimSHT8rHO2V6P09zdITIaseAVbI5R5YxL3RlxxeHQp1stDwijfhiTwRuZzlL6B6CP24A==
   dependencies:
     change-case "^4.1.2"
     js-yaml "^4.1.0"
-    ramda "^0.28.0"
-    ringcentral-open-api-parser "^0.9.13"
+    ramda "^0.29.0"
+    ringcentral-open-api-parser "^0.9.14"
 
 git-hooks-list@^3.0.0:
   version "3.1.0"
@@ -1046,11 +1046,6 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
-ramda@^0.28.0:
-  version "0.28.0"
-  resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.28.0.tgz#acd785690100337e8b063cab3470019be427cc97"
-  integrity sha512-9QnLuG/kPVgWvMQ4aODhsBUFKOUmnbUnsSXACv+NCQZcHbeb+v8Lodp8OVxtRULN1/xOyYLLaL6npE6dMq5QTA==
-
 ramda@^0.29.0:
   version "0.29.0"
   resolved "https://registry.npmjs.org/ramda/-/ramda-0.29.0.tgz#fbbb67a740a754c8a4cbb41e2a6e0eb8507f55fb"
@@ -1073,10 +1068,19 @@ rimraf@^3.0.2:
   dependencies:
     glob "^7.1.3"
 
-ringcentral-open-api-parser@^0.9.13, ringcentral-open-api-parser@^0.9.14:
-  version "0.9.14"
-  resolved "https://registry.npmjs.org/ringcentral-open-api-parser/-/ringcentral-open-api-parser-0.9.14.tgz#d0781480f630f200ab3ee395f605bff553278a1b"
-  integrity sha512-5bkAyTeiedTkMOjdDIlj8/cx9eRXef1VqoQNPhNRInZg5zALY1+U6Sidhc4/dAi/qyULf7aaTvG9oznnF8hGRg==
+ringcentral-open-api-parser@^0.9.14:
+  version "0.9.15"
+  resolved "https://registry.npmjs.org/ringcentral-open-api-parser/-/ringcentral-open-api-parser-0.9.15.tgz#7167518d2d6fe44805c0beb4740f3ae5ae958eae"
+  integrity sha512-f/qI6MizZWNkFgFQJrgmMs1CKd4O+xut9pwAMtMpdNkIYZdYBEWe6NT3zAfRQptk64wC+Q4QBSCjkD4iietfXA==
+  dependencies:
+    js-yaml "^4.1.0"
+    lodash "^4.17.21"
+    openapi-types "^12.1.0"
+
+ringcentral-open-api-parser@^0.9.16:
+  version "0.9.16"
+  resolved "https://registry.npmjs.org/ringcentral-open-api-parser/-/ringcentral-open-api-parser-0.9.16.tgz#b0d09cb4a1ce9f08c2e2221b3fe35d40eeca1cfa"
+  integrity sha512-1eK7bsSf47zLTKaGkfc1guW+0wsuWb8MR/svlbv6FrbUNjn1NjL8IcSRpy7w2UzwhS0Bm4CEvH4MXkAuMonYZQ==
   dependencies:
     js-yaml "^4.1.0"
     lodash "^4.17.21"

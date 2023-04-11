@@ -49,7 +49,7 @@ export const generateSamples = (parsed: ParseResult, outputDir: string) => {
 
       markdown.push('\n```cs');
       markdown.push('var rc = new RestClient("clientID", "clientSecret", "serverURL"));');
-      markdown.push('await rc.Authorize("username", "extension", "password");');
+      markdown.push('await rc.Authorize("jwtToken");');
       markdown.push(
         `var result = await rc${buildPath(operation.endpoint)}.${capitalizeFirstLetter(
           operation.method2,

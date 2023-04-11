@@ -1,6 +1,6 @@
 {
   "license": "MIT",
-  "version": "0.4.10",
+  "version": "0.4.11",
   "scripts": {
     "lint": "eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write . && sort-package-json",
     "test": "ts-node ./src/index.ts",
@@ -16,26 +16,26 @@
   "dependencies": {
     "change-case": "^4.1.2",
     "js-yaml": "^4.1.0",
-    "ramda": "^0.28.0",
-    "ringcentral-open-api-parser": "^0.9.13"
+    "ramda": "^0.29.0",
+    "ringcentral-open-api-parser": "^0.9.14"
   },
   "devDependencies": {
     "@types/js-yaml": "^4.0.5",
-    "@types/node": "^18.15.10",
-    "@types/ramda": "^0.28.23",
-    "@typescript-eslint/eslint-plugin": "^5.57.0",
-    "@typescript-eslint/parser": "^5.57.0",
+    "@types/node": "^18.15.11",
+    "@types/ramda": "^0.28.24",
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
+    "@typescript-eslint/parser": "^5.58.0",
     "dotenv-override-true": "^6.2.2",
-    "eslint": "^8.36.0",
+    "eslint": "^8.38.0",
     "eslint-config-alloy": "^4.9.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "generate-rc-cs-code": "^0.4.9",
+    "generate-rc-cs-code": "^0.4.10",
     "prettier": "^2.8.7",
     "sort-package-json": "^2.4.1",
     "ts-node": "^10.9.1",
-    "ttpt": "^0.5.2",
-    "typescript": "^5.0.2",
+    "ttpt": "^0.6.2",
+    "typescript": "^5.0.4",
     "yarn-upgrade-all": "^0.7.2"
   }
 }

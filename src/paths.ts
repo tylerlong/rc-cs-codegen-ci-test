@@ -6,7 +6,13 @@ import { Operation, ParseResult } from 'ringcentral-open-api-parser/lib/types';
 
 import { capitalizeFirstLetter } from './utils';
 
-const generatePathMethod = (parameter: string | undefined, token: string, hasParent: boolean): string => {
+const generatePathMethod = (
+  parameter: string | undefined,
+  token: string,
+  hasParent: boolean,
+  noParentParameter: boolean,
+  // eslint-disable-next-line max-params
+): string => {
   if (parameter) {
     return `public string Path(bool withParameter = true)
         {
@@ -17,9 +23,17 @@ const generatePathMethod = (parameter: string | undefined, token: string, hasPar
             return $"${hasParent ? '{parent.Path()}' : ''}/${token}";
         }`;
   } else {
-    return `public string Path()
+    let parentPath = '';
+    if (hasParent) {
+      if (noParentParameter) {
+        parentPath = '{parent.Path(false)}';
+      } else {
+        parentPath = '{parent.Path()}';
+      }
+    }
+    return `public string Path(bool withParameter = false)
         {
-            return $"${hasParent ? '{parent.Path()}' : ''}/${token.replace('dotSearch', '.search')}";
+            return $"${parentPath}/${token.replace('dotSearch', '.search')}";
         }`;
   }
 };
@@ -188,7 +202,12 @@ namespace RingCentral.Paths.${itemPaths.join('.')}
     public partial class Index
     {
         ${generateConstructor(item.parameter, item.defaultParameter, R.init(itemPaths))}
-        ${generatePathMethod(item.parameter, R.last(item.paths)!, itemPaths.length > 1)}
+        ${generatePathMethod(
+          item.parameter,
+          R.last(item.paths)!,
+          itemPaths.length > 1,
+          item.noParentParameter === true,
+        )}
 ${item.operations.map((operation) => generateOperationMethod(operation, item.parameter)).join('\n\n')}
     }
 }

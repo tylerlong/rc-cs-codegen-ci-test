@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { Field, ParseResult } from 'ringcentral-open-api-parser/lib/types';
+import type { Field, ParseResult } from 'ringcentral-open-api-parser/lib/types';
 
 const normalizeField = (f: Field): Field => {
   if (['event', 'delegate', 'ref', 'default', 'operator', 'public', 'params', 'internal', 'checked'].includes(f.name)) {

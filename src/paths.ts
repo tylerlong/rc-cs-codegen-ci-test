@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { pascalCase, capitalCase } from 'change-case';
 import * as R from 'ramda';
-import { Operation, ParseResult } from 'ringcentral-open-api-parser/lib/types';
+import type { Operation, ParseResult } from 'ringcentral-open-api-parser/lib/types';
 
 import { capitalizeFirstLetter } from './utils';
 
@@ -49,8 +49,8 @@ const generateBridgeMethod = (
     public partial class Index
     {
         public ${itemPaths.join('.')}.Index ${R.last(itemPaths)}(${
-      parameter ? `string ${parameter} = ${defaultValue ? `"${defaultValue}"` : null}` : ''
-    })
+          parameter ? `string ${parameter} = ${defaultValue ? `"${defaultValue}"` : null}` : ''
+        })
         {
             return new ${itemPaths.join('.')}.Index(this${parameter ? `, ${parameter}` : ''});
         }

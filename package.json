@@ -1,40 +1,40 @@
 {
-  "license": "MIT",
-  "version": "0.5.0",
-  "scripts": {
-    "lint": "eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write . && sort-package-json",
-    "test": "ts-node ./src/index.ts",
-    "definitions": "ts-node -r dotenv-override-true/config src/definitions.ts",
-    "paths": "ts-node -r dotenv-override-true/config src/paths.ts",
-    "generate": "yarn definitions && yarn paths",
-    "prepublishOnly": "tsc src/index.ts --declaration --outDir build"
-  },
   "name": "generate-rc-cs-code",
+  "version": "0.5.0",
+  "license": "MIT",
   "bin": {
     "generate-rc-cs-code": "./build/index.js"
   },
+  "scripts": {
+    "definitions": "ts-node -r dotenv-override-true/config src/definitions.ts",
+    "generate": "yarn definitions && yarn paths",
+    "lint": "eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write . && sort-package-json",
+    "paths": "ts-node -r dotenv-override-true/config src/paths.ts",
+    "prepublishOnly": "tsc src/index.ts --declaration --outDir build",
+    "test": "ts-node ./src/index.ts"
+  },
   "dependencies": {
-    "change-case": "^4.1.2",
+    "change-case": "^5.1.2",
     "js-yaml": "^4.1.0",
-    "ramda": "^0.29.0",
-    "ringcentral-open-api-parser": "^0.12.2"
+    "ramda": "^0.29.1",
+    "ringcentral-open-api-parser": "^0.13.0"
   },
   "devDependencies": {
-    "@types/js-yaml": "^4.0.5",
-    "@types/node": "^20.5.9",
-    "@types/ramda": "^0.29.3",
-    "@typescript-eslint/eslint-plugin": "^6.6.0",
-    "@typescript-eslint/parser": "^6.6.0",
+    "@types/js-yaml": "^4.0.8",
+    "@types/node": "^20.8.9",
+    "@types/ramda": "^0.29.7",
+    "@typescript-eslint/eslint-plugin": "^6.9.1",
+    "@typescript-eslint/parser": "^6.9.1",
     "dotenv-override-true": "^6.2.2",
-    "eslint": "^8.48.0",
+    "eslint": "^8.52.0",
     "eslint-config-alloy": "^5.1.2",
     "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
     "generate-rc-cs-code": "^0.5.0",
     "prettier": "^3.0.3",
-    "sort-package-json": "^2.5.1",
+    "sort-package-json": "^2.6.0",
     "ts-node": "^10.9.1",
-    "ttpt": "^0.6.4",
+    "ttpt": "^0.6.6",
     "typescript": "^5.2.2",
     "yarn-upgrade-all": "^0.7.2"
   }

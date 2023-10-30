@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as R from 'ramda';
 import { pascalCase } from 'change-case';
 import { capitalizeFirstLetter } from './utils';
-import { ParseResult } from 'ringcentral-open-api-parser/lib/types';
+import type { ParseResult } from 'ringcentral-open-api-parser/lib/types';
 
 export const generateSamples = (parsed: ParseResult, outputDir: string) => {
   const markdown = ['# RingCentral.Net SDK Code Samples'];

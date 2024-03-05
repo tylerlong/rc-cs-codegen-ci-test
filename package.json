@@ -1,6 +1,6 @@
 {
   "name": "generate-rc-cs-code",
-  "version": "0.5.4",
+  "version": "0.5.5",
   "license": "MIT",
   "bin": {
     "generate-rc-cs-code": "./build/index.js"

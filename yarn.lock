@@ -1092,10 +1092,19 @@ rimraf@^3.0.2:
   dependencies:
     glob "^7.1.3"
 
-ringcentral-open-api-parser@^0.14.2, ringcentral-open-api-parser@^0.14.3:
+ringcentral-open-api-parser@^0.14.2:
   version "0.14.3"
   resolved "https://registry.yarnpkg.com/ringcentral-open-api-parser/-/ringcentral-open-api-parser-0.14.3.tgz#90671fe7271d4a06d6e41263af7e7d515a825304"
   integrity sha512-HypeMevVdJV25SzzmuFGaiMF9HGkbzTHMV9bXul88sUW6V6DhW4C8XKfnWgC+4mkhnc886tHk5foBukNS/8BIg==
+  dependencies:
+    js-yaml "^4.1.0"
+    lodash "^4.17.21"
+    openapi-types "^12.1.3"
+
+ringcentral-open-api-parser@^0.14.6:
+  version "0.14.6"
+  resolved "https://registry.yarnpkg.com/ringcentral-open-api-parser/-/ringcentral-open-api-parser-0.14.6.tgz#7715448414f9d8abc5c740801bb2f8c9eae1f03c"
+  integrity sha512-QNLZwTUTENcb4NLkhzY4lvw590PDk3FipuDRkJ9tml4Rdy0cvvfbu+aEMLYE2jArUdEH+zBWUJIQs6hT3hgD6g==
   dependencies:
     js-yaml "^4.1.0"
     lodash "^4.17.21"

@@ -6,12 +6,12 @@
     "generate-rc-cs-code": "./build/index.js"
   },
   "scripts": {
-    "definitions": "ts-node -r dotenv-override-true/config src/definitions.ts",
+    "definitions": "tsx -r dotenv-override-true/config src/definitions.ts",
     "generate": "yarn definitions && yarn paths",
     "lint": "eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write . && sort-package-json",
-    "paths": "ts-node -r dotenv-override-true/config src/paths.ts",
+    "paths": "tsx -r dotenv-override-true/config src/paths.ts",
     "prepublishOnly": "tsc src/index.ts --declaration --outDir build",
-    "test": "ts-node ./src/index.ts"
+    "test": "tsx ./src/index.ts"
   },
   "dependencies": {
     "change-case": "4.1.2",
@@ -33,7 +33,7 @@
     "generate-rc-cs-code": "^0.5.8",
     "prettier": "^3.3.3",
     "sort-package-json": "^2.10.1",
-    "ts-node": "^10.9.2",
+    "tsx": "^4.19.1",
     "ttpt": "^0.12.1",
     "typescript": "^5.6.2",
     "yarn-upgrade-all": "^0.7.4"

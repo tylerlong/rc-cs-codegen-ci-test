@@ -155,6 +155,9 @@ const generateOperationMethod = (operation: Operation, parameter: string | undef
     requestParams.push('multipartFormDataContent');
   } else if (operation.bodyParameters) {
     requestParams.push(operation.bodyParameters);
+  } else if (operation.method !== 'get') {
+    // HTTP get is not allowed to have a body
+    requestParams.push('null');
   }
   requestParams.push(operation.queryParameters ? 'queryParams' : 'null');
   requestParams.push('restRequestConfig');

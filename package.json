@@ -1,6 +1,6 @@
 {
   "name": "generate-rc-cs-code",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "license": "MIT",
   "bin": {
     "generate-rc-cs-code": "./build/index.js"
@@ -17,25 +17,25 @@
     "change-case": "4.1.2",
     "js-yaml": "^4.1.0",
     "ramda": "^0.30.1",
-    "ringcentral-open-api-parser": "^0.15.1"
+    "ringcentral-open-api-parser": "^0.15.2"
   },
   "devDependencies": {
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^22.9.0",
+    "@types/node": "^22.10.7",
     "@types/ramda": "^0.30.2",
-    "@typescript-eslint/eslint-plugin": "^8.13.0",
-    "@typescript-eslint/parser": "^8.13.0",
+    "@typescript-eslint/eslint-plugin": "^8.20.0",
+    "@typescript-eslint/parser": "^8.20.0",
     "dotenv-override-true": "^6.2.2",
     "eslint": "8.57.0",
     "eslint-config-alloy": "^5.1.2",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.2.1",
-    "generate-rc-cs-code": "^0.6.0",
-    "prettier": "^3.3.3",
-    "sort-package-json": "^2.10.1",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.2",
+    "generate-rc-cs-code": "^0.6.2",
+    "prettier": "^3.4.2",
+    "sort-package-json": "^2.14.0",
     "tsx": "^4.19.2",
     "ttpt": "^0.13.0",
-    "typescript": "^5.6.3",
+    "typescript": "^5.7.3",
     "yarn-upgrade-all": "^0.7.4"
   },
   "yarn-upgrade-all": {

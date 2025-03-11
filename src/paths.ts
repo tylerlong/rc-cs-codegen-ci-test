@@ -1,10 +1,13 @@
-import * as fs from 'fs';
-import * as path from 'path';
-import { pascalCase, capitalCase } from 'change-case';
-import * as R from 'ramda';
-import type { Operation, ParseResult } from 'ringcentral-open-api-parser/lib/types';
+import * as fs from "fs";
+import * as path from "path";
+import { capitalCase, pascalCase } from "change-case";
+import * as R from "ramda";
+import type {
+  Operation,
+  ParseResult,
+} from "ringcentral-open-api-parser/lib/types";
 
-import { capitalizeFirstLetter } from './utils';
+import { capitalizeFirstLetter } from "./utils";
 
 const generatePathMethod = (
   parameter: string | undefined,
@@ -18,22 +21,24 @@ const generatePathMethod = (
         {
             if (withParameter && ${parameter} != null)
             {
-                return $"${hasParent ? '{parent.Path()}' : ''}/${token}/{${parameter}}";
+                return $"${
+      hasParent ? "{parent.Path()}" : ""
+    }/${token}/{${parameter}}";
             }
-            return $"${hasParent ? '{parent.Path()}' : ''}/${token}";
+            return $"${hasParent ? "{parent.Path()}" : ""}/${token}";
         }`;
   } else {
-    let parentPath = '';
+    let parentPath = "";
     if (hasParent) {
       if (noParentParameter) {
-        parentPath = '{parent.Path(false)}';
+        parentPath = "{parent.Path(false)}";
       } else {
-        parentPath = '{parent.Path()}';
+        parentPath = "{parent.Path()}";
       }
     }
     return `public string Path(bool withParameter = false)
         {
-            return $"${parentPath}/${token.replace('dotSearch', '.search')}";
+            return $"${parentPath}/${token.replace("dotSearch", ".search")}";
         }`;
   }
 };
@@ -44,20 +49,24 @@ const generateBridgeMethod = (
   itemPaths: string[],
 ): string => {
   if (itemPaths.length > 1) {
-    return `namespace RingCentral.Paths.${R.init(itemPaths).join('.')}
+    return `namespace RingCentral.Paths.${R.init(itemPaths).join(".")}
 {
     public partial class Index
     {
-        public ${itemPaths.join('.')}.Index ${R.last(itemPaths)}(${
-          parameter ? `string ${parameter} = ${defaultValue ? `"${defaultValue}"` : null}` : ''
-        })
+        public ${itemPaths.join(".")}.Index ${R.last(itemPaths)}(${
+      parameter
+        ? `string ${parameter} = ${defaultValue ? `"${defaultValue}"` : null}`
+        : ""
+    })
         {
-            return new ${itemPaths.join('.')}.Index(this${parameter ? `, ${parameter}` : ''});
+            return new ${itemPaths.join(".")}.Index(this${
+      parameter ? `, ${parameter}` : ""
+    });
         }
     }
 }`;
   }
-  return '';
+  return "";
 };
 
 const generateConstructor = (
@@ -65,48 +74,62 @@ const generateConstructor = (
   defaultValue: string | undefined,
   parentPaths: string[],
 ): string => {
-  const result = ['public RestClient rc;'];
+  const result = ["public RestClient rc;"];
   if (parentPaths.length > 0) {
-    result.push(`public ${parentPaths.join('.')}.Index parent;`);
+    result.push(`public ${parentPaths.join(".")}.Index parent;`);
   }
   if (parameter) {
     result.push(`public string ${parameter};`);
   }
   if (parentPaths.length > 0) {
     result.push(
-      `public Index(${parentPaths.join('.')}.Index parent${
-        parameter ? `, string ${parameter} = ${defaultValue ? `"${defaultValue}"` : null}` : ''
+      `public Index(${parentPaths.join(".")}.Index parent${
+        parameter
+          ? `, string ${parameter} = ${
+            defaultValue ? `"${defaultValue}"` : null
+          }`
+          : ""
       })
       {`,
     );
-    result.push('this.parent = parent;');
-    result.push('this.rc = parent.rc;');
+    result.push("this.parent = parent;");
+    result.push("this.rc = parent.rc;");
   } else {
     result.push(
       `public Index(RestClient rc${
-        parameter ? `, string ${parameter} = ${defaultValue ? `"${defaultValue}"` : null}` : ''
+        parameter
+          ? `, string ${parameter} = ${
+            defaultValue ? `"${defaultValue}"` : null
+          }`
+          : ""
       })
       {`,
     );
-    result.push('this.rc = rc;');
+    result.push("this.rc = rc;");
   }
   if (parameter) {
     result.push(`this.${parameter} = ${parameter};`);
   }
-  result.push('}');
+  result.push("}");
 
-  return result.join('\n');
+  return result.join("\n");
 };
 
 // eslint-disable-next-line complexity
-const generateOperationMethod = (operation: Operation, parameter: string | undefined): string => {
+const generateOperationMethod = (
+  operation: Operation,
+  parameter: string | undefined,
+): string => {
   // comments
-  const comments = ['/// <summary>'];
+  const comments = ["/// <summary>"];
   comments.push(
-    `${(operation.description || operation.summary || capitalCase(operation.operationId))
-      .split('\n')
-      .map((l) => `/// ${l}`)
-      .join('\n')}`,
+    `${
+      (operation.description || operation.summary ||
+        capitalCase(operation.operationId))
+        .split("\n")
+        .map((l) => `/// ${l}`)
+        .join("\n")
+    }`,
   );
   comments.push(`/// HTTP Method: ${operation.method}`);
   comments.push(`/// Endpoint: ${operation.endpoint}`);
@@ -119,14 +142,17 @@ const generateOperationMethod = (operation: Operation, parameter: string | undef
   if (operation.userPermission) {
     comments.push(`/// User Permission: ${operation.userPermission}`);
   }
-  comments.push('/// </summary>');
-  let result = comments.map((l) => `        ${l}`).join('\n');
+  comments.push("/// </summary>");
+  let result = comments.map((l) => `        ${l}`).join("\n");
 
   // responseType
-  let responseType = 'string';
+  let responseType = "string";
   if (operation.responseSchema) {
-    if (operation.responseSchema.type === 'string' && operation.responseSchema.format === 'binary') {
-      responseType = 'byte[]';
+    if (
+      operation.responseSchema.type === "string" &&
+      operation.responseSchema.format === "binary"
+    ) {
+      responseType = "byte[]";
     } else if (operation.responseSchema.$ref) {
       responseType = `RingCentral.${operation.responseSchema.$ref}`;
     }
@@ -138,33 +164,45 @@ const generateOperationMethod = (operation: Operation, parameter: string | undef
     if (operation.bodyType) {
       methodParams.push(`${operation.bodyType} ${operation.bodyParameters}`);
     } else {
-      methodParams.push(`RingCentral.${capitalizeFirstLetter(operation.bodyParameters)} ${operation.bodyParameters}`);
+      methodParams.push(
+        `RingCentral.${
+          capitalizeFirstLetter(operation.bodyParameters)
+        } ${operation.bodyParameters}`,
+      );
     }
   }
   if (operation.queryParameters) {
-    methodParams.push(`RingCentral.${capitalizeFirstLetter(operation.queryParameters)} queryParams = null`);
+    methodParams.push(
+      `RingCentral.${
+        capitalizeFirstLetter(operation.queryParameters)
+      } queryParams = null`,
+    );
   }
-  methodParams.push('RestRequestConfig restRequestConfig = null');
+  methodParams.push("RestRequestConfig restRequestConfig = null");
 
   // requestParams
   const requestParams: string[] = [];
-  requestParams.push(`this.Path(${!operation.withParameter && parameter ? 'false' : ''})`);
+  requestParams.push(
+    `this.Path(${!operation.withParameter && parameter ? "false" : ""})`,
+  );
   if (operation.formUrlEncoded) {
-    requestParams.push('new FormUrlEncodedContent(dict)');
+    requestParams.push("new FormUrlEncodedContent(dict)");
   } else if (operation.multipart) {
-    requestParams.push('multipartFormDataContent');
+    requestParams.push("multipartFormDataContent");
   } else if (operation.bodyParameters) {
     requestParams.push(operation.bodyParameters);
-  } else if (operation.method !== 'get') {
+  } else if (operation.method !== "get") {
     // HTTP get is not allowed to have a body
-    requestParams.push('null');
+    requestParams.push("null");
   }
-  requestParams.push(operation.queryParameters ? 'queryParams' : 'null');
-  requestParams.push('restRequestConfig');
+  requestParams.push(operation.queryParameters ? "queryParams" : "null");
+  requestParams.push("restRequestConfig");
 
   // result
   result += `
-  public async Task<${responseType}> ${pascalCase(operation.method2)}(${methodParams.join(', ')})
+  public async Task<${responseType}> ${pascalCase(operation.method2)}(${
+    methodParams.join(", ")
+  })
   {\n`;
   if (operation.withParameter) {
     result += `if (${parameter} == null)
@@ -173,20 +211,24 @@ const generateOperationMethod = (operation: Operation, parameter: string | undef
     }`;
   }
   if (operation.formUrlEncoded) {
-    result += `var dict = new System.Collections.Generic.Dictionary<string, string>();
+    result +=
+      `var dict = new System.Collections.Generic.Dictionary<string, string>();
     Utils.GetPairs(${operation.bodyParameters}).ToList().ForEach(t => dict.Add(t.name, t.value.ToString()));\n`;
   } else if (operation.multipart) {
-    result += `var multipartFormDataContent = Utils.GetMultipartFormDataContent(${operation.bodyParameters});\n`;
+    result +=
+      `var multipartFormDataContent = Utils.GetMultipartFormDataContent(${operation.bodyParameters});\n`;
   }
-  result += `return await rc.${capitalizeFirstLetter(operation.method)}<${responseType}>(${requestParams.join(', ')});
+  result += `return await rc.${
+    capitalizeFirstLetter(operation.method)
+  }<${responseType}>(${requestParams.join(", ")});
   }`;
   return result;
 };
 
 export const generatePaths = (parsed: ParseResult, _outputDir: string) => {
   let outputDir = _outputDir;
-  if (outputDir !== '') {
-    outputDir = path.join(outputDir, 'Paths');
+  if (outputDir !== "") {
+    outputDir = path.join(outputDir, "Paths");
     if (fs.existsSync(outputDir)) {
       fs.rmSync(outputDir, { recursive: true, force: true });
     }
@@ -200,27 +242,39 @@ using System.Threading.Tasks;
 using System.Linq;
 using System.Net.Http;
 
-namespace RingCentral.Paths.${itemPaths.join('.')}
+namespace RingCentral.Paths.${itemPaths.join(".")}
 {
     public partial class Index
     {
-        ${generateConstructor(item.parameter, item.defaultParameter, R.init(itemPaths))}
-        ${generatePathMethod(
-          item.parameter,
-          R.last(item.paths)!,
-          itemPaths.length > 1,
-          item.noParentParameter === true,
-        )}
-${item.operations.map((operation) => generateOperationMethod(operation, item.parameter)).join('\n\n')}
+        ${
+      generateConstructor(
+        item.parameter,
+        item.defaultParameter,
+        R.init(itemPaths),
+      )
+    }
+        ${
+      generatePathMethod(
+        item.parameter,
+        R.last(item.paths)!,
+        itemPaths.length > 1,
+        item.noParentParameter === true,
+      )
+    }
+${
+      item.operations.map((operation) =>
+        generateOperationMethod(operation, item.parameter)
+      ).join("\n\n")
+    }
     }
 }
 
 ${generateBridgeMethod(item.parameter, item.defaultParameter, itemPaths)}
 `;
-    if (outputDir !== '') {
+    if (outputDir !== "") {
       const folder = path.join(outputDir, ...itemPaths);
       fs.mkdirSync(folder, { recursive: true });
-      fs.writeFileSync(path.join(folder, 'Index.cs'), code.trim());
+      fs.writeFileSync(path.join(folder, "Index.cs"), code.trim());
     }
   }
 };

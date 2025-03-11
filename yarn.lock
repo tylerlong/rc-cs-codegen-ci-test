@@ -1319,10 +1319,10 @@ ringcentral-open-api-parser@^0.15.2:
     lodash "^4.17.21"
     openapi-types "^12.1.3"
 
-ringcentral-open-api-parser@^0.15.4:
-  version "0.15.4"
-  resolved "https://registry.yarnpkg.com/ringcentral-open-api-parser/-/ringcentral-open-api-parser-0.15.4.tgz#31db00f9d55cb8c0397a33868ef5caeb7b612c00"
-  integrity sha512-cr7K0Wex+BPKzZqO183eXWGw6N9kCsVQz/3fnxHdLh52YgbYQ81cLoBvWDc0drIz9PeBBMefZQ2Ez4ZuVfkCmw==
+ringcentral-open-api-parser@^0.15.5:
+  version "0.15.5"
+  resolved "https://registry.yarnpkg.com/ringcentral-open-api-parser/-/ringcentral-open-api-parser-0.15.5.tgz#e4b116eeec45268490c9b41663a490d4e0805b46"
+  integrity sha512-uRD+V9FZX0ZuMylO+0Y1aelbPtoZzePnsR3heiGhLqiql5zG5J7vkkkIIzROkGAyzlIREF+b5kVuAWcNsNQ5bA==
   dependencies:
     js-yaml "^4.1.0"
     lodash "^4.17.21"

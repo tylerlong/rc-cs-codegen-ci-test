@@ -4,3 +4,4 @@ temp/
 *-internal.yml
 rc-platform.yml
 dev-notes.md
+.DS_Store

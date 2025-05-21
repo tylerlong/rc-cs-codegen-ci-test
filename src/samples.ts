@@ -99,8 +99,16 @@ export const generateSamples = (parsed: ParseResult, outputDir: string) => {
       }
 
       if (operation.responseSchema?.$ref) {
+        let className = operation.responseSchema.$ref;
+        let isArray = false;
+        if (className.endsWith("[]")) {
+          isArray = true;
+          className = className.slice(0, -2);
+        }
         markdown.push(
-          `- \`result\` is of type [${operation.responseSchema.$ref}](./Definitions/${operation.responseSchema.$ref}.cs)`,
+          `- \`result\` is of type [${className}]${
+            isArray ? "[]" : ""
+          }(./Definitions/${className}.cs)`,
         );
       } else if (!operation.responseSchema) {
         markdown.push("- `result` is an empty string");

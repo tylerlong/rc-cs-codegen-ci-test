@@ -14,6 +14,7 @@ const normalizeField = (f: Field): Field => {
       "params",
       "internal",
       "checked",
+      "private",
     ].includes(f.name)
   ) {
     f.name = `@${f.name}`;

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "module": "CommonJS",
     "types": ["node"],
     "rootDir": "src",
     "outDir": "build",

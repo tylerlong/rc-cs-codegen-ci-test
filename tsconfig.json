@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "types": ["node"],
+    "rootDir": "src",
+    "outDir": "build",
+    "declaration": true
+  },
+  "include": [
+    "src/index.ts"
+  ]
+}

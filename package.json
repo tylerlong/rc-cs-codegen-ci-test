@@ -10,7 +10,7 @@
     "generate": "yarn definitions && yarn paths",
     "lint": "eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write . && sort-package-json",
     "paths": "tsx -r dotenv-override-true/config src/paths.ts",
-    "prepublishOnly": "tsc src/index.ts --declaration --outDir build",
+    "prepublishOnly": "tsc",
     "test": "tsx ./src/index.ts"
   },
   "dependencies": {

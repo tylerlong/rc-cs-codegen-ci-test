@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
-import type { Field, ParseResult } from "ringcentral-open-api-parser/lib/types";
+import type { Field, ParseResult } from "ringcentral-open-api-parser";
 
 const normalizeField = (f: Field): Field => {
   if (

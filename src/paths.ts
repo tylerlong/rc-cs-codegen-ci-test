@@ -5,9 +5,9 @@ import * as R from "ramda";
 import type {
   Operation,
   ParseResult,
-} from "ringcentral-open-api-parser/lib/types";
+} from "ringcentral-open-api-parser";
 
-import { capitalizeFirstLetter } from "./utils";
+import { capitalizeFirstLetter } from "./utils.js";
 
 const generatePathMethod = (
   parameter: string | undefined,

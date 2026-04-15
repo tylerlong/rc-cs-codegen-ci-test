@@ -1,6 +1,6 @@
 {
   "name": "generate-rc-cs-code",
-  "version": "0.6.9",
+  "version": "0.7.0",
   "license": "MIT",
   "bin": {
     "generate-rc-cs-code": "./build/index.js"
@@ -17,21 +17,21 @@
     "change-case": "4.1.2",
     "js-yaml": "^4.1.1",
     "ramda": "^0.32.0",
-    "ringcentral-open-api-parser": "^0.16.3"
+    "ringcentral-open-api-parser": "^0.17.2"
   },
   "devDependencies": {
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^25.5.2",
+    "@types/node": "^25.6.0",
     "@types/ramda": "^0.31.1",
-    "@typescript-eslint/eslint-plugin": "^8.58.0",
-    "@typescript-eslint/parser": "^8.58.0",
+    "@typescript-eslint/eslint-plugin": "^8.58.2",
+    "@typescript-eslint/parser": "^8.58.2",
     "dotenv-override-true": "^6.2.2",
     "eslint": "8.57.0",
     "eslint-config-alloy": "^5.1.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
-    "generate-rc-cs-code": "^0.6.6",
-    "prettier": "^3.8.1",
+    "generate-rc-cs-code": "^0.6.9",
+    "prettier": "^3.8.3",
     "sort-package-json": "^3.6.1",
     "tsx": "^4.21.0",
     "ttpt": "^0.13.0",

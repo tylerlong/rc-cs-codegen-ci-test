@@ -5,3 +5,4 @@ temp/
 rc-platform.yml
 dev-notes.md
 .DS_Store
+.yarnrc

@@ -1,0 +1,8 @@
+node_modules/
+temp/
+*-internal.yml
+rc-platform.yml
+dev-notes.md
+.DS_Store
+.npmrc
+pnpm-workspace.yaml

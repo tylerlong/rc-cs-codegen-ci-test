@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  ringcentral-open-api-parser: file:../ringcentral-open-api-parser
+
 importers:
 
   .:
@@ -18,8 +21,8 @@ importers:
         specifier: ^0.32.0
         version: 0.32.0
       ringcentral-open-api-parser:
-        specifier: ^0.17.3
-        version: 0.17.3
+        specifier: file:../ringcentral-open-api-parser
+        version: file:../ringcentral-open-api-parser
     devDependencies:
       '@biomejs/biome':
         specifier: ^2.5.0
@@ -371,8 +374,8 @@ packages:
   ramda@0.32.0:
     resolution: {integrity: sha512-GQWAHhxhxWBWA8oIBr1XahFVjQ9Fic6MK9ikijfd4TZHfE2+urfk+irVlR5VOn48uwMgM+loRRBJd6Yjsbc0zQ==}
 
-  ringcentral-open-api-parser@0.17.3:
-    resolution: {integrity: sha512-gMd097sxNxSRJDalIZWFhhZuRh58XPjaqjak0Oopp95/JHQMIvn/ZjN0LgHEzJW/I2WrayAcfmh0wD4sjF2Hyg==}
+  ringcentral-open-api-parser@file:../ringcentral-open-api-parser:
+    resolution: {directory: ../ringcentral-open-api-parser, type: directory}
 
   semver@7.8.5:
     resolution: {integrity: sha512-Y7/KDsb8LjooZpwaqGyulO6DQlksgCncchHGk+sZIY4SBvUocMBEFH5Ur1fI4dV+Jvl0w6cjvucaIi40puRioA==}
@@ -638,7 +641,7 @@ snapshots:
       change-case: 4.1.2
       js-yaml: 4.2.0
       ramda: 0.32.0
-      ringcentral-open-api-parser: 0.17.3
+      ringcentral-open-api-parser: file:../ringcentral-open-api-parser
 
   git-hooks-list@4.2.1: {}
 
@@ -685,7 +688,7 @@ snapshots:
 
   ramda@0.32.0: {}
 
-  ringcentral-open-api-parser@0.17.3:
+  ringcentral-open-api-parser@file:../ringcentral-open-api-parser:
     dependencies:
       js-yaml: 4.2.0
       lodash: 4.18.1

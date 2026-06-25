@@ -8,7 +8,7 @@
 	},
 	"scripts": {
 		"definitions": "tsx -r dotenv-override-true/config src/definitions.ts",
-		"generate": "yarn definitions && yarn paths",
+		"generate": "pnpm run definitions && pnpm run paths",
 		"lint": "biome check --write . && sort-package-json",
 		"paths": "tsx -r dotenv-override-true/config src/paths.ts",
 		"prepublishOnly": "tsc",
@@ -30,13 +30,7 @@
 		"sort-package-json": "^3.6.1",
 		"tsx": "^4.22.0",
 		"ttpt": "^0.13.0",
-		"typescript": "^6.0.3",
-		"yarn-upgrade-all": "^0.8.1"
+		"typescript": "^6.0.3"
 	},
-	"packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
-	"yarn-upgrade-all": {
-		"ignore": [
-			"change-case"
-		]
-	}
+	"packageManager": "pnpm@10.34.4"
 }

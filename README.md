@@ -7,7 +7,7 @@ This repo is to experiment RingCentral C# Code Generation in a CI pipeline.
 ### Install
 
 ```
-yarn global add generate-rc-cs-code
+pnpm add -g generate-rc-cs-code
 ```
 
 ### Run
@@ -25,11 +25,11 @@ generating files.
 ### setup
 
 ```
-yarn install
+pnpm install
 ```
 
 ### Test
 
 ```
-yarn test -i /Users/tyler.liu/src/ts/rc-cs-codegen-ci-test/rc-platform-internal.yml -o /Users/tyler.liu/src/ts/rc-cs-codegen-ci-test/temp
+pnpm test -- -i /Users/tyler.liu/src/ts/rc-cs-codegen-ci-test/rc-platform-internal.yml -o /Users/tyler.liu/src/ts/rc-cs-codegen-ci-test/temp
 ```

@@ -1,49 +1,42 @@
 {
-  "name": "generate-rc-cs-code",
-  "version": "0.7.0",
-  "type": "module",
-  "license": "MIT",
-  "bin": {
-    "generate-rc-cs-code": "./build/index.js"
-  },
-  "scripts": {
-    "definitions": "tsx -r dotenv-override-true/config src/definitions.ts",
-    "generate": "yarn definitions && yarn paths",
-    "lint": "eslint --fix '**/*.{ts,tsx,js,jsx}' && prettier --write . && sort-package-json",
-    "paths": "tsx -r dotenv-override-true/config src/paths.ts",
-    "prepublishOnly": "tsc",
-    "test": "tsx ./src/index.ts"
-  },
-  "dependencies": {
-    "change-case": "4.1.2",
-    "js-yaml": "^4.1.1",
-    "ramda": "^0.32.0",
-    "ringcentral-open-api-parser": "^0.17.2"
-  },
-  "devDependencies": {
-    "@types/js-yaml": "^4.0.9",
-    "@types/node": "^25.8.0",
-    "@types/ramda": "^0.31.1",
-    "@typescript-eslint/eslint-plugin": "^8.59.3",
-    "@typescript-eslint/parser": "^8.59.3",
-    "dotenv-override-true": "^6.2.2",
-    "eslint": "8.57.0",
-    "eslint-config-alloy": "^5.1.2",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.5",
-    "generate-rc-cs-code": "^0.7.0",
-    "prettier": "^3.8.3",
-    "sort-package-json": "^3.6.1",
-    "tsx": "^4.22.0",
-    "ttpt": "^0.13.0",
-    "typescript": "^6.0.3",
-    "yarn-upgrade-all": "^0.8.1"
-  },
-  "yarn-upgrade-all": {
-    "ignore": [
-      "change-case",
-      "eslint"
-    ]
-  },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+	"name": "generate-rc-cs-code",
+	"version": "0.7.0",
+	"license": "MIT",
+	"type": "module",
+	"bin": {
+		"generate-rc-cs-code": "./build/index.js"
+	},
+	"scripts": {
+		"definitions": "tsx -r dotenv-override-true/config src/definitions.ts",
+		"generate": "yarn definitions && yarn paths",
+		"lint": "biome check --write . && sort-package-json",
+		"paths": "tsx -r dotenv-override-true/config src/paths.ts",
+		"prepublishOnly": "tsc",
+		"test": "tsx ./src/index.ts"
+	},
+	"dependencies": {
+		"change-case": "4.1.2",
+		"js-yaml": "^4.1.1",
+		"ramda": "^0.32.0",
+		"ringcentral-open-api-parser": "^0.17.2"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.4.1",
+		"@types/js-yaml": "^4.0.9",
+		"@types/node": "^25.8.0",
+		"@types/ramda": "^0.31.1",
+		"dotenv-override-true": "^6.2.2",
+		"generate-rc-cs-code": "^0.7.0",
+		"sort-package-json": "^3.6.1",
+		"tsx": "^4.22.0",
+		"ttpt": "^0.13.0",
+		"typescript": "^6.0.3",
+		"yarn-upgrade-all": "^0.8.1"
+	},
+	"packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
+	"yarn-upgrade-all": {
+		"ignore": [
+			"change-case"
+		]
+	}
 }

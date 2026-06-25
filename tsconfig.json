@@ -1,13 +1,11 @@
 {
-  "compilerOptions": {
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "types": ["node"],
-    "rootDir": "src",
-    "outDir": "build",
-    "declaration": true
-  },
-  "include": [
-    "src/index.ts"
-  ]
+	"compilerOptions": {
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
+		"types": ["node"],
+		"rootDir": "src",
+		"outDir": "build",
+		"declaration": true
+	},
+	"include": ["src/index.ts"]
 }

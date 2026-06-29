@@ -16,12 +16,12 @@
 	},
 	"dependencies": {
 		"change-case": "5.4.4",
-		"js-yaml": "^4.2.0",
+		"js-yaml": "^5.1.0",
 		"ramda": "^0.32.0",
-		"ringcentral-open-api-parser": "^0.17.3"
+		"ringcentral-open-api-parser": "^0.17.4"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.5.0",
+		"@biomejs/biome": "^2.5.1",
 		"@types/js-yaml": "^4.0.9",
 		"@types/node": "^25.9.4",
 		"@types/ramda": "^0.32.0",

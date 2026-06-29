@@ -1,16 +1,16 @@
+import * as fs from "node:fs";
+import * as path from "node:path";
 import { pascalCase } from "change-case";
-import * as fs from "fs";
-import * as path from "path";
-import * as R from "ramda";
 import type { ParseResult } from "ringcentral-open-api-parser";
 import { capitalizeFirstLetter } from "./utils.js";
 
 export const generateSamples = (parsed: ParseResult, outputDir: string) => {
 	const markdown = ["# RingCentral.Net SDK Code Samples"];
 
-	const paths = R.sortBy(
-		R.path(["operations", 0, "endpoint"]) as any,
-		parsed.paths,
+	const paths = [...parsed.paths].sort((a, b) =>
+		(a.operations[0]?.endpoint ?? "").localeCompare(
+			b.operations[0]?.endpoint ?? "",
+		),
 	);
 
 	const buildPath = (s: string): string => {
@@ -116,11 +116,9 @@ export const generateSamples = (parsed: ParseResult, outputDir: string) => {
 				console.log(operation);
 			}
 
+			const tag = operation.tags?.[0]?.replace(/ /g, "-") ?? "";
 			markdown.push(
-				`\n[Try it out](https://developer.ringcentral.com/api-reference#${operation.tags![0].replace(
-					/ /g,
-					"-",
-				)}-${operation.operationId}) in API Explorer.`,
+				`\n[Try it out](https://developer.ringcentral.com/api-reference#${tag}-${operation.operationId}) in API Explorer.`,
 			);
 		}
 	}

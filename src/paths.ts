@@ -1,6 +1,6 @@
+import * as fs from "node:fs";
+import * as path from "node:path";
 import { capitalCase, pascalCase } from "change-case";
-import * as fs from "fs";
-import * as path from "path";
 import * as R from "ramda";
 import type { Operation, ParseResult } from "ringcentral-open-api-parser";
 
@@ -231,8 +231,9 @@ export const generatePaths = (parsed: ParseResult, _outputDir: string) => {
 
 	for (const item of parsed.paths) {
 		const itemPaths = item.paths.map((p) => pascalCase(p));
+		const token = item.paths[item.paths.length - 1];
 		const code = `
-using System.Threading.Tasks;
+	using System.Threading.Tasks;
 using System.Linq;
 using System.Net.Http;
 
@@ -245,12 +246,12 @@ namespace RingCentral.Paths.${itemPaths.join(".")}
 					item.defaultParameter,
 					R.init(itemPaths),
 				)}
-        ${generatePathMethod(
-					item.parameter,
-					R.last(item.paths)!,
-					itemPaths.length > 1,
-					item.noParentParameter === true,
-				)}
+	        ${generatePathMethod(
+						item.parameter,
+						token,
+						itemPaths.length > 1,
+						item.noParentParameter === true,
+					)}
 ${item.operations
 	.map((operation) => generateOperationMethod(operation, item.parameter))
 	.join("\n\n")}

@@ -1,5 +1,5 @@
-import * as fs from "fs";
-import * as path from "path";
+import * as fs from "node:fs";
+import * as path from "node:path";
 import type { Field, ParseResult } from "ringcentral-open-api-parser";
 
 const normalizeField = (f: Field): Field => {
@@ -26,10 +26,16 @@ const normalizeField = (f: Field): Field => {
 	} else if (f.type === "integer") {
 		f.type = "long?";
 	} else if (f.type === "array") {
-		f.type = `${normalizeField(f.items!).type}[]`;
+		if (!f.items) {
+			throw new Error(`${f.name} is missing items`);
+		}
+		f.type = `${normalizeField(f.items).type}[]`;
 	} else if (f.type === "dict") {
+		if (!f.items) {
+			throw new Error(`${f.name} is missing items`);
+		}
 		f.type = `System.Collections.Generic.Dictionary<string, ${
-			normalizeField(f.items!).type
+			normalizeField(f.items).type
 		}>`;
 	} else if (f.type === "boolean") {
 		f.type = "bool?";
@@ -48,7 +54,7 @@ const generateField = (_f: Field) => {
 		p += `[JsonProperty("${f.name}")]`;
 		p += `\n        public ${f.type} ${f.name.replace(
 			/-([a-z])/g,
-			(match, p1: string) => p1.toUpperCase(),
+			(_match, p1: string) => p1.toUpperCase(),
 		)};`;
 	} else if (f.name.includes(":") || f.name.includes(".")) {
 		p += `[JsonProperty("${f.name}")]`;
@@ -58,8 +64,9 @@ const generateField = (_f: Field) => {
 	}
 
 	p = `/// </summary>\n        ${p}`;
-	if (f.enum || f.items?.enum) {
-		p = `///     Enum: ${(f.enum || f.items?.enum)!.join(", ")}\n        ${p}`;
+	const enumValues = f.enum ?? f.items?.enum;
+	if (enumValues) {
+		p = `///     Enum: ${enumValues.join(", ")}\n        ${p}`;
 	}
 	if (f.default) {
 		p = `///     Default: ${f.default}\n        ${p}`;
@@ -105,21 +112,19 @@ export const generateDefinitions = (
 		let code = `namespace RingCentral
   {${
 		model.description
-			? "\n    /// <summary>\n" +
-				model.description
+			? `\n    /// <summary>\n${model.description
 					.split("\n")
-					.map((line) => "/// " + line)
-					.join("\n") +
-				"\n/// </summary>"
+					.map((line) => `/// ${line}`)
+					.join("\n")}\n/// </summary>`
 			: ""
 	}
       public class ${model.name}
       {
           ${model.fields.map((f) => generateField(f)).join("\n\n        ")}
       }
-  }`;
+		}`;
 		if (code.includes("[JsonProperty(")) {
-			code = "using Newtonsoft.Json;\n\n" + code;
+			code = `using Newtonsoft.Json;\n\n${code}`;
 		}
 		if (outputDir !== "") {
 			fs.writeFileSync(path.join(outputDir, `${model.name}.cs`), code);

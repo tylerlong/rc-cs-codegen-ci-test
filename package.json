@@ -1,35 +1,35 @@
 {
-	"name": "generate-rc-cs-code",
-	"version": "0.7.1",
-	"license": "MIT",
-	"type": "module",
-	"bin": {
-		"generate-rc-cs-code": "./build/index.js"
-	},
-	"scripts": {
-		"definitions": "tsx -r dotenv-override-true/config src/definitions.ts",
-		"generate": "pnpm run definitions && pnpm run paths",
-		"lint": "biome check --write . && sort-package-json",
-		"paths": "tsx -r dotenv-override-true/config src/paths.ts",
-		"prepublishOnly": "tsc",
-		"test": "tsx ./src/index.ts"
-	},
-	"dependencies": {
-		"change-case": "5.4.4",
-		"js-yaml": "^5.1.0",
-		"ramda": "^0.32.0",
-		"ringcentral-open-api-parser": "file:../ringcentral-open-api-parser"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "^2.5.1",
-		"@types/js-yaml": "^4.0.9",
-		"@types/node": "^26.0.1",
-		"@types/ramda": "^0.32.0",
-		"dotenv-override-true": "^6.2.2",
-		"generate-rc-cs-code": "^0.7.0",
-		"sort-package-json": "^4.0.0",
-		"tsx": "^4.22.4",
-		"typescript": "^6.0.3"
-	},
-	"packageManager": "pnpm@10.34.4"
+  "name": "generate-rc-cs-code",
+  "version": "0.7.1",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "generate-rc-cs-code": "./build/index.js"
+  },
+  "scripts": {
+    "definitions": "tsx -r dotenv-override-true/config src/definitions.ts",
+    "generate": "pnpm run definitions && pnpm run paths",
+    "lint": "biome check --write . && sort-package-json",
+    "paths": "tsx -r dotenv-override-true/config src/paths.ts",
+    "prepublishOnly": "tsc",
+    "test": "tsx ./src/index.ts"
+  },
+  "dependencies": {
+    "change-case": "5.4.4",
+    "js-yaml": "^5.1.0",
+    "ramda": "^0.32.0",
+    "ringcentral-open-api-parser": "^0.17.7"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.1",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^26.0.1",
+    "@types/ramda": "^0.32.0",
+    "dotenv-override-true": "^6.2.2",
+    "generate-rc-cs-code": "^0.7.0",
+    "sort-package-json": "^4.0.0",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3"
+  },
+  "packageManager": "pnpm@10.34.4"
 }

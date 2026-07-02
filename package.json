@@ -16,9 +16,9 @@
   },
   "dependencies": {
     "change-case": "5.4.4",
-    "js-yaml": "^5.1.0",
+    "js-yaml": "^5.2.0",
     "ramda": "^0.32.0",
-    "ringcentral-open-api-parser": "^0.17.7"
+    "ringcentral-open-api-parser": "^0.17.8"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.1",

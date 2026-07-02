@@ -15,8 +15,8 @@ importers:
         specifier: 5.4.4
         version: 5.4.4
       js-yaml:
-        specifier: ^5.1.0
-        version: 5.1.0
+        specifier: ^5.2.0
+        version: 5.2.0
       ramda:
         specifier: ^0.32.0
         version: 0.32.0
@@ -342,12 +342,12 @@ packages:
     resolution: {integrity: sha512-+Pgi+vMuUNkJyExiMBt5IlFoMyKnr5zhJ4Uspz58WOhBF5QoIZkFyNHIbBAtHwzVAgk5RtndVNsDRN61/mmDqg==}
     engines: {node: '>=12'}
 
-  js-yaml@4.2.0:
-    resolution: {integrity: sha512-ePWsvanv0DWuDRsW8dnt+R4jQ31SCRCQ7hhNcPXZPsoBZiemuZNYGf7adZdqX2D86j6rvKp3RpCxVTSb8WQlOw==}
+  js-yaml@4.3.0:
+    resolution: {integrity: sha512-1td788aAnnZ5qs7V2QIRl1owjtYpbKt749Y3xauqQgwIIGF/xXWz1wMTEBx5O3LK3lXLVuqXPdPxj2BoFHaW9Q==}
     hasBin: true
 
-  js-yaml@5.1.0:
-    resolution: {integrity: sha512-s8VA5jkR8f22S3NAXmhKPFqGUduqZGlsufabVOgN14iTdw/RXcym7bKkbwjxLK9Yw2lEvvmJjFp119+KPeo8Kg==}
+  js-yaml@5.2.0:
+    resolution: {integrity: sha512-YeLUMlvR4Ou1B119LIaM0r65JvbOBooJDc9yEu0dClb/uSC5P4FrLU8OCCz/HXWvtPoIrR0dRzABTjo1sTN9Bw==}
     hasBin: true
 
   lodash@4.18.1:
@@ -643,7 +643,7 @@ snapshots:
   generate-rc-cs-code@0.7.0:
     dependencies:
       change-case: 4.1.2
-      js-yaml: 4.2.0
+      js-yaml: 4.3.0
       ramda: 0.32.0
       ringcentral-open-api-parser: file:../ringcentral-open-api-parser
 
@@ -656,11 +656,11 @@ snapshots:
 
   is-plain-obj@4.1.0: {}
 
-  js-yaml@4.2.0:
+  js-yaml@4.3.0:
     dependencies:
       argparse: 2.0.1
 
-  js-yaml@5.1.0:
+  js-yaml@5.2.0:
     dependencies:
       argparse: 2.0.1
 
@@ -698,7 +698,7 @@ snapshots:
 
   ringcentral-open-api-parser@file:../ringcentral-open-api-parser:
     dependencies:
-      js-yaml: 5.1.0
+      js-yaml: 5.2.0
       lodash: 4.18.1
       openapi-types: 12.1.3
 
